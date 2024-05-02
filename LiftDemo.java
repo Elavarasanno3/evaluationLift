@@ -31,87 +31,87 @@ public class LiftDemo {
         int start = sc.nextInt();
         System.out.print("\nEnter the ending point it must be between 0,10 : ");
         int end = sc.nextInt();
-        findLift2(start,end);
+        findLift(start,end);
         System.out.println(liftMap);
     }
-    public static void findLift2(int start,int end){
-        HashMap<Integer,Integer> difference = new HashMap<>();
-        for(int i = 1;i<=5;i++){
-            difference.put(i,20);
-        }
-        for (Map.Entry<Integer, Integer> mapElement : liftMap.entrySet()) {
-            int key = mapElement.getKey();
-            int value = mapElement.getValue();
-            int sum = 0;
-            switch (key){
-                case 5 :{
-                    sum = Math.abs((value - start) + (end - start));
-                }
-                case 1,2 :{
-                    if(value > 5){
-                        sum +=  1 ;
-                        if(start < 5){
-                            sum+= Math.abs(start - 5);
-                        }
-                        if(end > 5){
-                            sum+= 1;
-                        }else{
-                            sum += Math.abs(5-end) + 1;
-                        }
-                    }else{
-                        if(start > 5){
-                            sum+= 1;
-                        }else{
-                            sum+= Math.abs(start - value);
-                        }
-
-                        if(end > 5){
-                            sum+= 1;
-                        }
-                        sum += Math.abs(end-5);
-                    }
-                }
-                case 3,4 :{
-                    if(value < 5){
-                        sum +=  1 ;
-                        if(start > 5){
-                            sum+= Math.abs(end - start);
-                        }
-                        if(end > 5){
-                            sum += Math.abs(5-end) + 1;
-                        }else{
-                            sum += 3;
-                        }
-                    }else{
-                        if(start < 5){
-                            sum+= 4;
-                        }else{
-                            sum+= Math.abs(start - value);
-                        }
-
-                        if(end > 5){
-                            sum+= 1;
-                        }
-                        sum += Math.abs(start-5);
-                    }
-                }
-
-            }
-            difference.replace(key,sum);
-        }
-        int min = 20;
-        int perfectKey = 0;
-        for (Map.Entry<Integer, Integer> mapElement : difference.entrySet()) {
-            int key = mapElement.getKey();
-            int value = mapElement.getValue();
-            if(value < min) {
-                min = value;
-                perfectKey = key;
-            }
-        }
-        liftMap.put(perfectKey,end);
-        System.out.println(liftMap);
-        }
+//    public static void findLift2(int start,int end){
+//        HashMap<Integer,Integer> difference = new HashMap<>();
+//        for(int i = 1;i<=5;i++){
+//            difference.put(i,20);
+//        }
+//        for (Map.Entry<Integer, Integer> mapElement : liftMap.entrySet()) {
+//            int key = mapElement.getKey();
+//            int value = mapElement.getValue();
+//            int sum = 0;
+//            switch (key){
+//                case 5 :{
+//                    sum = Math.abs((value - start) + (end - start));
+//                }
+//                case 1,2 :{
+//                    if(value > 5){
+//                        sum +=  1 ;
+//                        if(start < 5){
+//                            sum+= Math.abs(start - 5);
+//                        }
+//                        if(end > 5){
+//                            sum+= 1;
+//                        }else{
+//                            sum += Math.abs(5-end) + 1;
+//                        }
+//                    }else{
+//                        if(start > 5){
+//                            sum+= 1;
+//                        }else{
+//                            sum+= Math.abs(start - value);
+//                        }
+//
+//                        if(end > 5){
+//                            sum+= 1;
+//                        }
+//                        sum += Math.abs(end-5);
+//                    }
+//                }
+//                case 3,4 :{
+//                    if(value < 5){
+//                        sum +=  1 ;
+//                        if(start > 5){
+//                            sum+= Math.abs(end - start);
+//                        }
+//                        if(end > 5){
+//                            sum += Math.abs(5-end) + 1;
+//                        }else{
+//                            sum += 3;
+//                        }
+//                    }else{
+//                        if(start < 5){
+//                            sum+= 4;
+//                        }else{
+//                            sum+= Math.abs(start - value);
+//                        }
+//
+//                        if(end > 5){
+//                            sum+= 1;
+//                        }
+//                        sum += Math.abs(start-5);
+//                    }
+//                }
+//
+//            }
+//            difference.replace(key,sum);
+//        }
+//        int min = 20;
+//        int perfectKey = 0;
+//        for (Map.Entry<Integer, Integer> mapElement : difference.entrySet()) {
+//            int key = mapElement.getKey();
+//            int value = mapElement.getValue();
+//            if(value < min) {
+//                min = value;
+//                perfectKey = key;
+//            }
+//        }
+//        liftMap.put(perfectKey,end);
+//        System.out.println(liftMap);
+//        }
 
     public static void findLift(int start,int end){
         int min = 11;
@@ -130,11 +130,12 @@ public class LiftDemo {
             }
         }
          keyList.add(0,perfectKey);
+         int perfectKeyChoice = 0;
          if(keyList.size() > 1){
-             perfectKey = findPerfectLift(keyList,start,end);
+             perfectKeyChoice = findPerfectLift(keyList,start,end);
          }
         System.out.println(perfectKey);
-         liftMap.replace(perfectKey,end);
+         liftMap.replace(perfectKeyChoice,end);
 
         System.out.println(liftMap);
     }
